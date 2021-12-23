@@ -1,6 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
+require('dotenv').config();
 // const { token } = require('./config.json');
 
 const client = new Client({
