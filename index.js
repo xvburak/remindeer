@@ -26,7 +26,7 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 	// check if channel is public and reaction is 👁‍🗨, sends DM with message link and details
 	if (reaction.message.channel.type === 'GUILD_TEXT' && reaction.emoji.name === '👁‍🗨') {
 		const exampleEmbed = {
-			title: `${reaction.message.author.username}’s message from #${reaction.message.channel.name}`,
+			title: `${reaction.message.author.username}’s message from ${reaction.message.guild.name}; #${reaction.message.channel.name}`,
 			url: reaction.message.url,
 			description: reaction.message.content,
 			footer: {
