@@ -60,7 +60,7 @@ ${reaction.message.content}
 		 
 🔗 ${reaction.message.url}`);
 
-	// checks if channel is dm and reaction is 💚, deletes resolved messages marked wit selected emoji
+	// checks if channel is dm and reaction is ✅, deletes resolved messages marked wit selected emoji
 	} else if (reaction.message.channel.type === 'DM') {
 		if (reaction.emoji.name === '✅') {
 			reaction.message.delete()
