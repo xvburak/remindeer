@@ -53,7 +53,7 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 		});
 
 	// checks if channel is dm and reaction is 💚, deletes resolved messages marked wit selected emoji
-	} else if (reaction.message.channel.type === 'GUILD_PUBLIC_THREAD' && reaction.message.emoji.name === '👁‍🗨') {
+	} else if (reaction.message.channel.type === 'GUILD_PUBLIC_THREAD' && reaction.emoji.name === '👁‍🗨') {
 		const time = new Date(`'${reaction.message.createdAt}'`);
 		const exampleEmbed = {
 			'type': 'rich',
