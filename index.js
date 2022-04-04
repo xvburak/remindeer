@@ -24,7 +24,7 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 	}
 
 	// check if channel is public and reaction is 👁‍🗨, sends DM with message link and details
-	if (reaction.message.channel.type === 'GUILD_TEXT' || reaction.message.channel.type === 'GUILD_PUBLIC_THREAD'  && reaction.emoji.name === '👁‍🗨') {
+	if (reaction.message.channel.type === 'GUILD_TEXT' && reaction.emoji.name === '👁‍🗨') {
 		const time = new Date(`'${reaction.message.createdAt}'`);
 		const exampleEmbed = {
 			'type': 'rich',
@@ -53,6 +53,33 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 		});
 
 	// checks if channel is dm and reaction is 💚, deletes resolved messages marked wit selected emoji
+	} else if (reaction.message.channel.type === 'GUILD_PUBLIC_THREAD' && reaction.message.emoji.name === '👁‍🗨') {
+		const time = new Date(`'${reaction.message.createdAt}'`);
+		const exampleEmbed = {
+			'type': 'rich',
+			'title': `${reaction.message.author.username}’s message`,
+			'description':`${reaction.message.content}\n`,
+			'color': 0xffe100,
+			'fields': [
+			  {
+					'name': 'server',
+					'value': `${reaction.message.guild.name}`,
+					'inline': true,
+			  },
+			  {
+					'name': 'channel',
+					'value': `#${reaction.message.channel.name}`,
+					'inline': true,
+			  },
+			],
+			'footer': {
+				'text': `Message created: ${time.toDateString()}`,
+			},
+			'url': reaction.message.url,
+		  };
+		user.send({
+			embeds: [exampleEmbed],
+		});
 	} else if (reaction.message.channel.type === 'DM' && reaction.emoji.name === '💚') {
 		reaction.message.delete()
 			.catch(console.error);
