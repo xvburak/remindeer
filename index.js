@@ -24,7 +24,7 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 	}
 
 	// check if channel is public and reaction is 👁‍🗨, sends DM with message link and details
-	if (reaction.message.channel.type === 'GUILD_TEXT' && reaction.emoji.name === '👁‍🗨') {
+	if (reaction.message.channel.type === 'GUILD_TEXT' || reaction.message.channel.type === 'GUILD_PUBLIC_THREAD'  && reaction.emoji.name === '👁‍🗨') {
 		const time = new Date(`'${reaction.message.createdAt}'`);
 		const exampleEmbed = {
 			'type': 'rich',
@@ -61,4 +61,3 @@ client.on ('messageReactionAdd', async (reaction, user) => {
 
 // Login to Discord with your client's token
 client.login(process.env.token);
-
